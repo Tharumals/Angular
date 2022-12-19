@@ -1,20 +1,22 @@
 @import '../../../styles/colors';
-.movie-item {
+
+.item {
     position: relative;
     display: block;
-    min-height: 300px;
+    min-height: 425px;
     border-radius: 5px;
-    background-color: $bgColor;
+    background-color: $bgColorLight;
     border: 1px solid $lightGray;
 
     &-image {
         img {
-            width: 100px;
+            width: 100%;
             border-radius: 5px;
-            height: 275px;
+            height: 375px;
             object-fit: cover;
         }
     }
+
     &-rating {
         position: absolute;
         display: flex;
@@ -32,7 +34,10 @@
     }
 
     &-title {
+        display: flex;
+        align-items: center;
         font-weight: bold;
         margin: 0.5rem;
+        height: 30px;
     }
 }
