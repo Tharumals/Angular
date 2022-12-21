@@ -13,6 +13,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemsBannerComponent } from './components/items-banner/items-banner.component';
 import { MovieItemComponent } from './components/movie-item/movie-item.component';
 import { PaginatorModule } from 'primeng/paginator';
+import { TabViewModule } from 'primeng/tabview';
+import { MovieComponent } from './pages/movie/movie.component';
+import { VideoEmbedComponent } from './components/video-embed/video-embed.component';
+import { ImageModule } from 'primeng/image';
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
     declarations: [
@@ -23,14 +28,19 @@ import { PaginatorModule } from 'primeng/paginator';
         MoviesComponent,
         SliderComponent,
         ItemsBannerComponent,
-        MovieItemComponent
+        MovieItemComponent,
+        MovieComponent,
+        VideoEmbedComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         HttpClientModule,
-        PaginatorModule
+        PaginatorModule,
+        TabViewModule,
+        ImageModule,
+        CarouselModule
     ],
     providers: [],
     bootstrap: [AppComponent]
