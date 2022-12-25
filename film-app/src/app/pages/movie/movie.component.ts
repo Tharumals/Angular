@@ -15,8 +15,10 @@ export class MovieComponent implements OnInit, OnDestroy {
     movieVideos: MovieVideo[] = [];
     movieImages: MovieImages | null = null;
     movieCredits: MovieCredits | null = null;
-    imagesSize = IMAGES_SIZES;
-    constructor(private route: ActivatedRoute, private movieService: MoviesService) {}
+    imagesSizes = IMAGES_SIZES;
+    similarMovies: Movie[] = [];
+
+    constructor(private route: ActivatedRoute, private moviesService: MoviesService) {}
 
     ngOnInit(): void {
         this.route.params.pipe(first()).subscribe(({ id }) => {
@@ -24,32 +26,40 @@ export class MovieComponent implements OnInit, OnDestroy {
             this.getMovieVideos(id);
             this.getMovieImages(id);
             this.getMovieCredits(id);
+            this.getMovieSimilar(id);
         });
     }
-    ngOnDestroy(): void {
-        throw new Error('Method not implemented.');
+
+    ngOnDestroy() {
+        console.log('component destroyed');
     }
 
     getMovie(id: string) {
-        this.movieService.getMovie(id).subscribe((movieData) => {
+        this.moviesService.getMovie(id).subscribe((movieData) => {
             this.movie = movieData;
         });
     }
 
     getMovieVideos(id: string) {
-        this.movieService.getMovieVideos(id).subscribe((movieVideoData) => {
-            this.movieVideos = movieVideoData;
+        this.moviesService.getMovieVideos(id).subscribe((movieVideosData) => {
+            this.movieVideos = movieVideosData;
+        });
+    }
+
+    getMovieSimilar(id: string) {
+        this.moviesService.getMovieSimilar(id).subscribe((movieSimilarData) => {
+            this.similarMovies = movieSimilarData;
         });
     }
 
     getMovieImages(id: string) {
-        this.movieService.getMovieImages(id).subscribe((movieImagesData) => {
+        this.moviesService.getMovieImages(id).subscribe((movieImagesData) => {
             this.movieImages = movieImagesData;
         });
     }
 
     getMovieCredits(id: string) {
-        this.movieService.getMovieCredits(id).subscribe((movieCreditsData) => {
+        this.moviesService.getMovieCredits(id).subscribe((movieCreditsData) => {
             this.movieCredits = movieCreditsData;
         });
     }
